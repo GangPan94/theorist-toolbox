@@ -1,0 +1,19 @@
+{
+  "project": "{{PROJECT_NAME}}",
+  "created": "{{DATE}}",
+  "strict_mode": {{STRICT_MODE}},
+  "paper_format": "latex",
+  "review_policy": {
+    "require_reviewer_approval_for_complete": true,
+    "require_citation_validation": true,
+    "block_theorem_without_proof_or_unproven": true
+  },
+  "workstream_naming": "W{NNN}-{slug}",
+  "agents": {
+    "project_coordinator": "project-coordinator",
+    "literature_reviewer": "literature-reviewer",
+    "prover": "prover",
+    "coder": "coder",
+    "paper_reviewer": "paper-reviewer"
+  }
+}
