@@ -1,3 +1,11 @@
+---
+name: codex-math
+description: OpenAI Codex (gpt-5.5) as an adversarial mathematical co-processor — verify, write, and explore modes for hard proofs, counterexample search, and independent verification. Treat every output as a lead, not a verdict.
+author: Moran Koren <korenmor@bgu.ac.il> (Ben-Gurion University of the Negev)
+---
+
+> **Author:** Moran Koren, Ben-Gurion University of the Negev (korenmor@bgu.ac.il). Part of the [Theorist Toolbox](https://github.com/morankor/theorist-toolbox).
+
 ## What this is
 
 OpenAI Codex (gpt-5.5) as a mathematical co-processor. Codex runs non-interactively via `codex exec` and returns structured results. Use it for hard proof problems that resist direct attempts.

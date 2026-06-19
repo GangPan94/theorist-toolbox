@@ -4,7 +4,11 @@ description: Write clear, detailed mathematical proofs for academic papers. Use 
   the user asks to prove a result, derive an equation, justify a claim analytically,
   or expand a proof sketch into a full proof. Also trigger on "prove", "show analytically",
   "derive", "justify mathematically", or "write a proof".
+author: Moran Koren <korenmor@bgu.ac.il> (Ben-Gurion University of the Negev)
 ---
+
+> **Author:** Moran Koren, Ben-Gurion University of the Negev (korenmor@bgu.ac.il). Part of the [Theorist Toolbox](https://github.com/morankor/theorist-toolbox).
+
 
 # Math proof
 

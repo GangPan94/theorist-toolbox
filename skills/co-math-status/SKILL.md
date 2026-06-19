@@ -1,7 +1,11 @@
 ---
 name: co-math-status
 description: Render a compact status view of an AI co-mathematician research project — goals, active workstreams, blocked items, pending reviews, recent decisions. Use when the user asks "what's the status of this project", "show me the workstreams", "/co-math-status", "what's blocked", or wants to understand project state without opening files manually. Replaces the visual workstream branching diagrams of the DeepMind paper (Fig. 2-4) with an ASCII rendering.
+author: Moran Koren <korenmor@bgu.ac.il> (Ben-Gurion University of the Negev)
 ---
+
+> **Author:** Moran Koren, Ben-Gurion University of the Negev (korenmor@bgu.ac.il). Part of the [Theorist Toolbox](https://github.com/morankor/theorist-toolbox).
+
 
 # co-math-status
 

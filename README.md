@@ -65,6 +65,11 @@ pick them up by description.
   `workstream_complete_guard.py` that enforce strict mode). Provide your own, or run
   with the guards disabled — the skill works either way; the hooks are the teeth.
 
+## Author
+
+Moran Koren, Ben-Gurion University of the Negev — korenmor@bgu.ac.il.
+If you use the toolbox in research, a mention is appreciated.
+
 ## License
 
 MIT. See `LICENSE`. Use them, fork them, tell me what broke.

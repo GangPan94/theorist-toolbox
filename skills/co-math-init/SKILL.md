@@ -1,7 +1,11 @@
 ---
 name: co-math-init
 description: Initialize a new AI co-mathematician research project. Use when the user wants to start a new math research investigation with AI agent support, or types "/co-math-init", "start a co-math project", "new research project", or similar. Scaffolds a directory with paper.tex, goals.md, decisions.md, workstreams/, and per-project hooks/config that enforce the co-mathematician discipline (no hand-waving, reviewer approvals required for completion).
+author: Moran Koren <korenmor@bgu.ac.il> (Ben-Gurion University of the Negev)
 ---
+
+> **Author:** Moran Koren, Ben-Gurion University of the Negev (korenmor@bgu.ac.il). Part of the [Theorist Toolbox](https://github.com/morankor/theorist-toolbox).
+
 
 # co-math-init
 
