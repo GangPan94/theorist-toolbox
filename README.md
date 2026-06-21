@@ -2,7 +2,7 @@
 
 A small set of Claude Code *skills* for doing economic theory with LLMs — proving
 results, checking them, and running a whole proof-building project the way you'd run
-a research team.
+a research team. 
 
 Empirical economists have had shared tooling for years. The empiricist learns the
 craft from reusable, opinionated tools. Theorists rarely really got that. This is an
