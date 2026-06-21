@@ -4,9 +4,8 @@ A small set of Claude Code *skills* for doing economic theory with LLMs — prov
 results, checking them, and running a whole proof-building project the way you'd run
 a research team.
 
-Empirical economists have had shared tooling for years. Paul Goldsmith-Pinkham's
-packages and writing guides, Scott Cunningham's *Mixtape* — the empiricist learns the
-craft from reusable, opinionated tools. Theorists never really got that. This is an
+Empirical economists have had shared tooling for years. The empiricist learns the
+craft from reusable, opinionated tools. Theorists rarely really got that. This is an
 attempt at the theory-side equivalent: a toolkit that encodes *how* to push an LLM
 through a proof without letting it hand-wave.
 
