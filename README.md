@@ -1,5 +1,21 @@
 # Theorist Toolbox
 
+> **If you use this toolbox, please cite:** Moran Koren (2026), *Theorist Toolbox: Tools for Agent-Based LLM-Assisted Economic Theory Research*, arXiv:2606.22337 — <https://arxiv.org/abs/2606.22337>.
+
+<details><summary>BibTeX</summary>
+
+```bibtex
+@article{koren2026theorist,
+  title         = {Theorist Toolbox: Tools for Agent-Based LLM-Assisted Economic Theory Research},
+  author        = {Koren, Moran},
+  year          = {2026},
+  eprint        = {2606.22337},
+  archivePrefix = {arXiv},
+  url           = {https://arxiv.org/abs/2606.22337}
+}
+```
+</details>
+
 A small set of Claude Code *skills* for doing economic theory with LLMs — proving
 results, checking them, and running a whole proof-building project the way you'd run
 a research team. 
