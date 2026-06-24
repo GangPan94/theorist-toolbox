@@ -19,26 +19,49 @@ The core stays small. Growth happens at the edges, as modules:
 - **case studies** — worked, reproducible examples that show the discipline holding
   (or honestly failing).
 
+## Strategic priorities (the hard problems)
+
+These are the structural problems with the current system. They matter more than any
+single new skill, because they decide whether the toolkit is *usable at scale*. Each
+is open for design discussion in the RFC.
+
+1. **Token efficiency.** The co-math workflow is wasteful: many sub-agents, each
+   re-reading shared context (`paper.tex`, prior reports), with the adversarial
+   reviewer invoked more than it needs to be. Directions worth exploring: scope each
+   agent to its workstream rather than the whole paper; cache/diff instead of
+   re-reading; invoke the reviewer only at gates; per-workstream token budgets.
+2. **Model routing (stop always using the strongest model).** Today every agent runs
+   the top model. Most of the work doesn't need it — literature formatting, status
+   rendering, readability lint, and plumbing-only review are cheap-model tasks; only
+   proving and adversarial verification need the strongest. Plan: a per-agent `model`
+   tier in `co-math-config.json`, with the coordinator routing by task.
+3. **Economic significance, not just mathematical truth.** The system happily proves
+   results that are *true but economically uninteresting*, and sometimes the math
+   generalises in a way that *strips* the economic content (a trivialising hypothesis,
+   an assumption that voids the mechanism). We need a taste/relevance gate — an
+   `economics-referee` agent or a `economic-significance` skill that applies the
+   "so what?" test and flags when a generalisation reduces economic value. This is the
+   editor in the room, and arguably the most distinctive thing the toolkit could add.
+4. **Output sharing.** A way for people to publish and browse co-math outputs — the
+   paper, the prompts, the workstream logs — so the community learns from real runs.
+   Start GitHub-native (a curated `showcase/` + the "Show and tell" discussions),
+   graduate to a dedicated gallery/site only if volume justifies it.
+
 ## Candidate next modules
 
-These are proposals, ranked by how often they'd pay off. Pick one up, or argue for a
-different ordering in the RFC.
+Smaller, self-contained wins. Pick one up, or argue for a different ordering in the RFC.
 
-1. **Boundary-condition / edge-case skill.** A discipline that forces the model to
-   enumerate degenerate cases (empty type space, ties, corner solutions, measure-zero
-   events) before declaring a proof complete — the single most common gap in
-   theory proofs.
-2. **Extensive-form / game-tree reasoning skill.** Structured handling of subgame
-   perfection, information sets, and backward induction, where LLMs currently flail.
-3. **Counterexample-search agent.** A sibling to `coder` whose job is purely
-   adversarial: given a conjecture, search numerically/symbolically for a refutation
-   before any proof effort is spent.
-4. **Referee-response skill.** Drafts point-by-point responses to referee reports
-   with the same justification discipline the proofs use — a natural bridge to the
-   `academic-writing` side of a theorist's workflow.
-5. **Wider Lean coverage.** Helpers that map common econ-theory constructs (preference
-   relations, fixed-point arguments, measure-theoretic limits) onto mathlib, lowering
-   the cost of a `lean-prover` workstream.
+- **Boundary-condition / edge-case skill.** Force enumeration of degenerate cases
+  (empty type space, ties, corner solutions, measure-zero events) before a proof is
+  declared complete — the most common gap in theory proofs.
+- **Counterexample-search agent.** A sibling to `coder` whose job is purely
+  adversarial: given a conjecture, search numerically/symbolically for a refutation
+  before any proof effort is spent.
+- **Extensive-form / game-tree reasoning skill.** Subgame perfection, information sets,
+  backward induction — where LLMs currently flail.
+- **Wider Lean coverage.** Helpers mapping common econ-theory constructs (preference
+  relations, fixed-point arguments, measure-theoretic limits) onto mathlib, lowering
+  the cost of a `lean-prover` workstream.
 
 ## Out of scope (for now)
 
