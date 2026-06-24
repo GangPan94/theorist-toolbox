@@ -1,5 +1,12 @@
 # Theorist Toolbox
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![arXiv](https://img.shields.io/badge/arXiv-2606.22337-b31b1b.svg)](https://arxiv.org/abs/2606.22337)
+[![Claude Code](https://img.shields.io/badge/Claude%20Code-skills%20%26%20agents-da7756.svg)](https://claude.com/claude-code)
+[![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](#contributing)
+
+*Shared tooling for doing economic theory with LLMs — prove results, check them, and run a proof-building project like a research team, without letting the model hand-wave.*
+
 > **If you use this toolbox, please cite:** Moran Koren (2026), *Theorist Toolbox: Tools for Agent-Based LLM-Assisted Economic Theory Research*, arXiv:2606.22337 — <https://arxiv.org/abs/2606.22337>.
 
 <details><summary>BibTeX</summary>
@@ -30,12 +37,12 @@ machine help on a theorem you don't already know how to prove, and trust the ans
 
 ## The skills
 
-| Skill | The bet | What it is |
-|-------|---------|-----------|
-| **`math-proof`** | One careful pass. | A discipline for writing a full, gap-free proof in a single shot: state what you'll show before showing it, sign every term, no "clearly," no overgeneralizing from examples. |
-| **`codex-math`** | Two minds, one adversarial. | Drives OpenAI Codex (gpt-5.5) as a *co-processor and hostile verifier* — propose, then try to break, then triage. Built around the rule that Codex is a brilliant, unreliable mathematician: every output is a lead, not a verdict. |
-| **`co-math-init` / `co-math-status`** | A research team, not a chat. | Scaffolds a structured proof-building *project* — `paper.tex`, goals, decisions log, workstreams, strict mode where every gap is flagged `\unproven{}` and nothing is "complete" without a reviewer's sign-off. The architecture follows Zheng et al. (2026), *AI co-mathematician* (Google DeepMind). `co-math-status` renders the project state. |
-| **`proof-readability`** | Correctness first, then clarity. | A post-verification exposition pass for proofs that are *already* verified — six layers (architecture, signposting, line-level justification, notation, intuition, grammar) that minimise the reader's work without ever changing the mathematics. In a co-math project the coordinator runs it after a proof is approved; a suspected gap routes the workstream back to the prover rather than getting quietly patched. |
+| Skill | The bet | What it is | Status |
+|-------|---------|-----------|--------|
+| **`math-proof`** | One careful pass. | A discipline for writing a full, gap-free proof in a single shot: state what you'll show before showing it, sign every term, no "clearly," no overgeneralizing from examples. | ✅ stable · no deps |
+| **`codex-math`** | Two minds, one adversarial. | Drives OpenAI Codex (gpt-5.5) as a *co-processor and hostile verifier* — propose, then try to break, then triage. Built around the rule that Codex is a brilliant, unreliable mathematician: every output is a lead, not a verdict. | ⚙️ needs OpenAI Codex CLI |
+| **`co-math-init` / `co-math-status`** | A research team, not a chat. | Scaffolds a structured proof-building *project* — `paper.tex`, goals, decisions log, workstreams, strict mode where every gap is flagged `\unproven{}` and nothing is "complete" without a reviewer's sign-off. The architecture follows Zheng et al. (2026), *AI co-mathematician* (Google DeepMind). `co-math-status` renders the project state. | ✅ stable · agents required, hooks optional |
+| **`proof-readability`** | Correctness first, then clarity. | A post-verification exposition pass for proofs that are *already* verified — six layers (architecture, signposting, line-level justification, notation, intuition, grammar) that minimise the reader's work without ever changing the mathematics. In a co-math project the coordinator runs it after a proof is approved; a suspected gap routes the workstream back to the prover rather than getting quietly patched. | ✅ stable · no deps |
 
 Each is a different point on a trade-off between speed, verification, and coverage:
 the single pass is fastest and cleanest but unchecked; the adversarial pair is the
@@ -56,6 +63,8 @@ in [`agents/`](agents/):
 | `coder` | Python for computational exploration and numerical verification, with mandatory tests and golden values. |
 | `lean-prover` | Formalises a lemma in Lean 4 and verifies it with `lake build`. A green build is the strongest "proven" the system supports — `paper-reviewer` re-runs the build rather than re-checking the mathematics, and the theorem is closed with `\leanproved{}`. |
 | `paper-reviewer` | Adversarial gate — a workstream cannot be marked complete until it writes an explicit approval file. |
+
+📐 **Diagrams:** see [`docs/co-math-architecture.md`](docs/co-math-architecture.md) for the agent topology, the workstream lifecycle, and the verification ladder (informal proof → Lean-verified → readable).
 
 ## The case study (`examples/`)
 
@@ -101,6 +110,12 @@ pick them up by description.
   it pins the toolchain per workstream and builds against mathlib. Without it the
   agent blocks the workstream cleanly rather than faking a proof. Every other agent
   runs with no extra tooling.
+
+## Contributing
+
+Issues and PRs welcome — bug reports, new skills, a sharper proof discipline, or
+fixes to the ones here. No CLA and no ceremony: open an issue or a PR and tell me
+what broke or what's missing.
 
 ## Author
 
