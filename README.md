@@ -114,8 +114,20 @@ pick them up by description.
 ## Contributing
 
 Issues and PRs welcome — bug reports, new skills, a sharper proof discipline, or
-fixes to the ones here. No CLA and no ceremony: open an issue or a PR and tell me
-what broke or what's missing.
+fixes to the ones here. No CLA and no ceremony.
+
+The toolbox grows the Linux way: a small core, plus self-contained **modules**
+(skills, agents, case studies). You don't need the whole tree — just the contract for
+the kind of module you're adding:
+
+- **[`CONTRIBUTING.md`](CONTRIBUTING.md)** — the module contract: where a skill/agent
+  lives, its frontmatter, and the *no-hand-waving* bar your PR is reviewed against.
+- **[`ROADMAP.md`](ROADMAP.md)** — where it's headed and which modules are most wanted next.
+- **[Discussions](../../discussions)** — questions, prompt-sharing, ideas (lower-stakes than issues).
+- **[`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md)** — be rigorous about ideas, kind to people.
+
+New here? Try a [`good first issue`](../../issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
+or weigh in on the pinned roadmap RFC.
 
 ## Author
 
