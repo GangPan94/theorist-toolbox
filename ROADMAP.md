@@ -65,12 +65,9 @@ Smaller, self-contained wins. Pick one up, or argue for a different ordering in 
 
 ## Out of scope (for now)
 
-- Heavy governance machinery (CLAs, SLAs, multi-track review). Right-sized for the
-  community we have, not the one a roadmap fantasises about.
+- Heavy governance machinery (CLAs, SLAs, multi-track review).
 - Provider lock-in. Skills should encode discipline, not hard-code one model's quirks.
 
 ## How priorities get set
 
-The maintainer sets direction (the BDFL role), but the ordering above is exactly what
-the RFC is for. A module with a contributor willing to own it beats a "nice to have"
-with nobody behind it — if you want to build one of these, say so and it moves up.
+If you want to build one of these, say so and it moves up.
