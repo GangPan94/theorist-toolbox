@@ -97,6 +97,7 @@ After scaffolding, output a concise message:
 - Confirm the directory was created (with absolute path).
 - Explain the files: `goals.md` for refining the question, `paper.tex` is the living working paper, `workstreams/` will fill up as the project-coordinator spawns work.
 - Tell them to invoke the `project-coordinator` sub-agent (once Phase 2 ships) to start the first workstream, OR — if Phase 2 isn't built yet — to manually edit `goals.md` and start drafting in `paper.tex`.
+- Note the verification ladder available to the coordinator: an informal `prover` proof (`\unproven{}` for any gap), or — for results worth machine-checking — a `lean-prover` workstream that formalises the lemma in Lean 4 and verifies it with `lake build`, closing the theorem with `\leanproved{W{NNN}}`. After any proof is APPROVED, a `proof-readability` pass can polish the exposition without touching the mathematics.
 - Note that hooks are not yet wired up (Phase 3 deliverable).
 
 ## What this skill does NOT do

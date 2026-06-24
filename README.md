@@ -35,11 +35,27 @@ machine help on a theorem you don't already know how to prove, and trust the ans
 | **`math-proof`** | One careful pass. | A discipline for writing a full, gap-free proof in a single shot: state what you'll show before showing it, sign every term, no "clearly," no overgeneralizing from examples. |
 | **`codex-math`** | Two minds, one adversarial. | Drives OpenAI Codex (gpt-5.5) as a *co-processor and hostile verifier* — propose, then try to break, then triage. Built around the rule that Codex is a brilliant, unreliable mathematician: every output is a lead, not a verdict. |
 | **`co-math-init` / `co-math-status`** | A research team, not a chat. | Scaffolds a structured proof-building *project* — `paper.tex`, goals, decisions log, workstreams, strict mode where every gap is flagged `\unproven{}` and nothing is "complete" without a reviewer's sign-off. The architecture follows Zheng et al. (2026), *AI co-mathematician* (Google DeepMind). `co-math-status` renders the project state. |
+| **`proof-readability`** | Correctness first, then clarity. | A post-verification exposition pass for proofs that are *already* verified — six layers (architecture, signposting, line-level justification, notation, intuition, grammar) that minimise the reader's work without ever changing the mathematics. In a co-math project the coordinator runs it after a proof is approved; a suspected gap routes the workstream back to the prover rather than getting quietly patched. |
 
 Each is a different point on a trade-off between speed, verification, and coverage:
 the single pass is fastest and cleanest but unchecked; the adversarial pair is the
 most reliable per claim; the structured team gives the broadest, most disciplined
-coverage and can *reject its own work*.
+coverage and can *reject its own work*; `proof-readability` runs after any of them
+to make an accepted proof legible.
+
+### The co-math agents (`agents/`)
+
+The `co-math-init` project is run by a small team of Claude Code sub-agents, shipped
+in [`agents/`](agents/):
+
+| Agent | Role |
+|-------|------|
+| `project-coordinator` | The front door — reads `goals.md`, formalises intent, dispatches and steers workstreams. |
+| `literature-reviewer` | Literature searches and verified, cited workstream reports. |
+| `prover` | Drafts proofs into `paper.tex` with strict discipline — every step justified, cited, or `\unproven{}`. Also runs the `proof-readability` pass in readability mode. |
+| `coder` | Python for computational exploration and numerical verification, with mandatory tests and golden values. |
+| `lean-prover` | Formalises a lemma in Lean 4 and verifies it with `lake build`. A green build is the strongest "proven" the system supports — `paper-reviewer` re-runs the build rather than re-checking the mathematics, and the theorem is closed with `\leanproved{}`. |
+| `paper-reviewer` | Adversarial gate — a workstream cannot be marked complete until it writes an explicit approval file. |
 
 ## The case study (`examples/`)
 
@@ -59,10 +75,12 @@ in the accompanying Substack post.
 
 ## Install
 
-These are Claude Code skills. Drop the folders into your skills directory:
+These are Claude Code skills and agents. Drop the skills into your skills directory,
+and — for the `co-math` workflow — the agents into your agents directory:
 
 ```bash
 cp -R skills/* ~/.claude/skills/
+cp -R agents/* ~/.claude/agents/   # only needed for the co-math project workflow
 ```
 
 Then invoke them from Claude Code (`/math-proof`, `/co-math-init`, …) or let the model
@@ -79,6 +97,10 @@ pick them up by description.
   `~/.claude/co-math/hooks/` (a `paper_tex_guard.py` and a
   `workstream_complete_guard.py` that enforce strict mode). Provide your own, or run
   with the guards disabled — the skill works either way; the hooks are the teeth.
+- **`lean-prover`** needs a working Lean 4 toolchain (`lean` and `lake` on `PATH`);
+  it pins the toolchain per workstream and builds against mathlib. Without it the
+  agent blocks the workstream cleanly rather than faking a proof. Every other agent
+  runs with no extra tooling.
 
 ## Author
 
