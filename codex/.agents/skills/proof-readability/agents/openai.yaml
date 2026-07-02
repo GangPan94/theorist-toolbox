@@ -1,0 +1,4 @@
+interface:
+  display_name: "Proof Readability"
+  short_description: "Polish verified proofs without changing math"
+  default_prompt: "Use $proof-readability to polish this verified proof without changing its mathematical content."

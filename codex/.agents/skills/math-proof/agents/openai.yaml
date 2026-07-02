@@ -1,0 +1,4 @@
+interface:
+  display_name: "Math Proof"
+  short_description: "Write rigorous, gap-free mathematical proofs"
+  default_prompt: "Use $math-proof to prove the stated result with full algebra and explicit sign checks."

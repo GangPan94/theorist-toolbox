@@ -1,0 +1,4 @@
+interface:
+  display_name: "Co-Math Init"
+  short_description: "Start a disciplined AI co-math project"
+  default_prompt: "Use $co-math-init to initialize a strict co-math research project for this question."

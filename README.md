@@ -3,6 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![arXiv](https://img.shields.io/badge/arXiv-2606.22337-b31b1b.svg)](https://arxiv.org/abs/2606.22337)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-skills%20%26%20agents-da7756.svg)](https://claude.com/claude-code)
+[![OpenAI Codex](https://img.shields.io/badge/OpenAI%20Codex-version-10a37f.svg)](codex/)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](#contributing)
 
 *Shared tooling for doing economic theory with LLMs — prove results, check them, and run a proof-building project like a research team, without letting the model hand-wave.*
@@ -25,7 +26,8 @@
 
 A small set of Claude Code *skills* for doing economic theory with LLMs — proving
 results, checking them, and running a whole proof-building project the way you'd run
-a research team. 
+a research team. An OpenAI **Codex version** is also included in [`codex/`](codex/),
+with companion ChatGPT instructions in [`chatgpt/`](chatgpt/).
 
 Empirical economists have had shared tooling for years. The empiricist learns the
 craft from reusable, opinionated tools. Theorists rarely really got that. This is an
@@ -84,6 +86,8 @@ in the accompanying Substack post.
 
 ## Install
 
+### Claude Code version
+
 These are Claude Code skills and agents. Drop the skills into your skills directory,
 and — for the `co-math` workflow — the agents into your agents directory:
 
@@ -94,6 +98,44 @@ cp -R agents/* ~/.claude/agents/   # only needed for the co-math project workflo
 
 Then invoke them from Claude Code (`/math-proof`, `/co-math-init`, …) or let the model
 pick them up by description.
+
+### OpenAI Codex version
+
+The Codex version lives in [`codex/`](codex/). It translates the same proof
+discipline into Codex-native skills and custom-agent profiles:
+
+- [`codex/.agents/skills/`](codex/.agents/skills/) — Codex skills for
+  `math-proof`, `codex-math`, `co-math-init`, `co-math-status`, and
+  `proof-readability`.
+- [`codex/.codex/agents/`](codex/.codex/agents/) — Codex custom-agent profiles
+  for the co-math team roles.
+
+Install it into a Codex workspace or repo:
+
+```bash
+cp -R codex/.agents /path/to/repo/
+cp -R codex/.codex /path/to/repo/
+```
+
+Then start Codex from that repo and invoke, for example:
+
+```text
+Use $math-proof to prove the stated result.
+Use $co-math-init to initialize a strict co-math project for: <research question>
+```
+
+Codex only spawns subagents when explicitly asked, so the co-math role profiles
+are written to work both as single-agent guidance and as explicit Codex custom
+agents.
+
+### ChatGPT prompt pack
+
+The ChatGPT version lives in [`chatgpt/`](chatgpt/). Use
+[`chatgpt/custom-gpt-instructions.md`](chatgpt/custom-gpt-instructions.md) as the
+instruction block for a custom GPT or project, attach
+[`chatgpt/knowledge/theorist-toolbox-reference.md`](chatgpt/knowledge/theorist-toolbox-reference.md)
+as a compact reference, or copy prompts directly from
+[`chatgpt/prompts/`](chatgpt/prompts/).
 
 ### Notes
 

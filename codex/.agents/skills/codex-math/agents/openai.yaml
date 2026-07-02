@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Math"
+  short_description: "Adversarial proof verification and exploration"
+  default_prompt: "Use $codex-math to verify this proof adversarially and triage any gaps."

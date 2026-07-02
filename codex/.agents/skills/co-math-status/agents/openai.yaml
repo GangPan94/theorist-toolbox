@@ -1,0 +1,4 @@
+interface:
+  display_name: "Co-Math Status"
+  short_description: "Summarize co-math goals and workstreams"
+  default_prompt: "Use $co-math-status to show the current project state and blocked workstreams."
