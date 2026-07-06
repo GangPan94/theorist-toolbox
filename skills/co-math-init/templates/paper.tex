@@ -52,7 +52,7 @@
   \stepcounter{unprovencount}%
   \textcolor{red!80!black}{\textbf{[UNPROVEN \theunprovencount]} #1}%
   \marginnote{\footnotesize\textcolor{red!80!black}{unproven \#\theunprovencount}}%
-  \xappto\unprovenlist{\item[\textbf{\#\theunprovencount}] #1\par}%
+  \appto\unprovenlist{\item[\textbf{\#\theunprovencount}] #1\par}%
 }
 
 \newcommand{\marginorigin}[1]{\marginnote{\footnotesize\textit{origin:} #1}}
