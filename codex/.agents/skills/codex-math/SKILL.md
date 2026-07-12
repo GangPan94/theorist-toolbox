@@ -1,6 +1,6 @@
 ---
 name: codex-math
-description: Run an adversarial mathematical workflow in Codex: verify proofs, write hard proofs, explore conjectures, search for counterexamples, and triage possible gaps. Use for important theorem checks, failed proof attempts, conjectures, independent verification, or requests like "audit this proof", "find a counterexample", "explore this claim", or "verify the math".
+description: "Run an adversarial mathematical workflow in Codex: verify proofs, write hard proofs, explore conjectures, search for counterexamples, and triage possible gaps. Use for important theorem checks, failed proof attempts, conjectures, independent verification, or requests like 'audit this proof', 'find a counterexample', 'explore this claim', or 'verify the math'."
 ---
 
 # Codex Math
