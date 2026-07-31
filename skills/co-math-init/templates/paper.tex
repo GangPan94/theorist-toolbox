@@ -52,7 +52,7 @@
   \stepcounter{unprovencount}%
   \textcolor{red!80!black}{\textbf{[UNPROVEN \theunprovencount]} #1}%
   \marginnote{\footnotesize\textcolor{red!80!black}{unproven \#\theunprovencount}}%
-  \appto\unprovenlist{\item[\textbf{\#\theunprovencount}] #1\par}%
+  \gappto\unprovenlist{\item #1\par}%
 }
 
 \newcommand{\marginorigin}[1]{\marginnote{\footnotesize\textit{origin:} #1}}
@@ -84,8 +84,8 @@
 \medskip
 This is a living document maintained by the AI co-mathematician system. Sections
 will be added, revised, and reviewed iteratively. Margin notes record the
-provenance of each contribution. Items flagged \unproven{} are explicitly
-unverified and listed in the appendix of open obligations.
+provenance of each contribution. Items flagged \texttt{\textbackslash unproven}
+are explicitly unverified and listed in the appendix of open obligations.
 \end{abstract}
 
 \tableofcontents
@@ -125,9 +125,10 @@ The following items are flagged \texttt{\textbackslash{}unproven} elsewhere in
 this document. The reviewer agent must verify that each is either resolved or
 explicitly accepted before the paper can be marked complete.
 
-\begin{description}
+\ifdefempty{\unprovenlist}{\textit{None at this stage.}}{%
+\begin{itemize}
 \unprovenlist
-\end{description}
+\end{itemize}}
 
 \section{Failed explorations (negative space)}
 

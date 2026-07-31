@@ -8,7 +8,7 @@
     "require_citation_validation": true,
     "block_theorem_without_proof_or_unproven": true,
     "lean_accepted_in_lieu_of_proof": true,
-    "readability_pass_after_approval": true
+    "require_readability_pass_after_proof": true
   },
   "workstream_naming": "W{NNN}-{slug}",
   "agents": {

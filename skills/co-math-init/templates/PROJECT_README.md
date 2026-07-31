@@ -37,10 +37,12 @@ Initialized {{DATE}}.
 3. **Review and steer.** Read incremental reports in
    `workstreams/W*/report.md`. Intervene at any time by messaging the
    project-coordinator.
-4. **Polish accepted proofs.** Once a prover or lean-prover workstream is
-   APPROVED, the coordinator may run a `W{NNN}-readability-{slug}` pass (the
-   `proof-readability` skill) — an exposition-only edit that never changes the
-   mathematics, re-reviewed for content preservation and plumbing only.
+4. **Readability pass (Phase 4.5).** Once a prover or lean-prover workstream is
+   APPROVED, the coordinator runs a `W{NNN}-readability-{slug}` pass (the
+   `proof-readability` skill) so the verified argument is actually
+   human-readable before the proving workstream closes — an exposition-only
+   edit that never changes the mathematics, re-reviewed for content
+   preservation and plumbing only.
 5. **Compile the paper.** `paper.tex` is the durable artifact. Margin notes
    record provenance, `\unproven{}` blocks flag every unverified step,
    `\leanproved{W{NNN}}` marks machine-checked results, and the "Open
@@ -55,6 +57,13 @@ Initialized {{DATE}}.
   proof), or be wrapped with `\unproven{}`.
 - Every `\cite{...}` must resolve to an entry whose source has been verified
   by the literature-reviewer.
+- After a proof is approved, it must pass a **readability pass** (Phase 4.5)
+  before its workstream is marked `complete`. The coordinator dispatches a
+  `W{NNN}-readability-{slug}` workstream that runs the `proof-readability` skill
+  (exposition only — never changes the mathematics); `paper-reviewer` re-checks
+  it for content preservation and plumbing. See
+  `review_policy.require_readability_pass_after_proof` in
+  [`co-math-config.json`](co-math-config.json).
 
 ## Strict mode
 

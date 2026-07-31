@@ -34,7 +34,7 @@ craft from reusable, opinionated tools. Theorists rarely really got that. This i
 attempt at the theory-side equivalent: a toolkit that encodes *how* to push an LLM
 through a proof without letting it hand-wave.
 
-The three skills are three different bets on the same problem — *how do you get
+The skills are different bets on the same problem — *how do you get
 machine help on a theorem you don't already know how to prove, and trust the answer?*
 
 ## The skills
@@ -43,8 +43,9 @@ machine help on a theorem you don't already know how to prove, and trust the ans
 |-------|---------|-----------|--------|
 | **`math-proof`** | One careful pass. | A discipline for writing a full, gap-free proof in a single shot: state what you'll show before showing it, sign every term, no "clearly," no overgeneralizing from examples. | ✅ stable · no deps |
 | **`codex-math`** | Two minds, one adversarial. | Drives OpenAI Codex (gpt-5.5) as a *co-processor and hostile verifier* — propose, then try to break, then triage. Built around the rule that Codex is a brilliant, unreliable mathematician: every output is a lead, not a verdict. | ⚙️ needs OpenAI Codex CLI |
-| **`co-math-init` / `co-math-status`** | A research team, not a chat. | Scaffolds a structured proof-building *project* — `paper.tex`, goals, decisions log, workstreams, strict mode where every gap is flagged `\unproven{}` and nothing is "complete" without a reviewer's sign-off. The architecture follows Zheng et al. (2026), *AI co-mathematician* (Google DeepMind). `co-math-status` renders the project state. | ✅ stable · agents required, hooks optional |
+| **`co-math-init` / `co-math-status`** | A research team, not a chat. | Scaffolds a structured proof-building *project* — `paper.tex`, goals, decisions log, workstreams, strict mode where every gap is flagged `\unproven{}` and nothing is "complete" without a reviewer's sign-off. The architecture follows Zheng et al. (2026), *AI co-mathematician* (Google DeepMind). `co-math-status` renders the project state. | ✅ stable · agents required, hooks in [`co-math/`](co-math/) |
 | **`proof-readability`** | Correctness first, then clarity. | A post-verification exposition pass for proofs that are *already* verified — six layers (architecture, signposting, line-level justification, notation, intuition, grammar) that minimise the reader's work without ever changing the mathematics. In a co-math project the coordinator runs it after a proof is approved; a suspected gap routes the workstream back to the prover rather than getting quietly patched. | ✅ stable · no deps |
+| **`second-brain`** | Read the literature exactly. | An academic "second brain" — agentic RAG over a local library of theoretical papers. LaTeX-aware ingestion (theorems/proofs chunked with their custom macros and prerequisite definitions auto-bundled), hybrid search, and an MCP server so Claude Code can answer questions against the library directly. Ships the complete `brain` Python package with its test suite. | ⚙️ needs Python 3.11+ (installs its own venv) |
 
 Each is a different point on a trade-off between speed, verification, and coverage:
 the single pass is fastest and cleanest but unchecked; the adversarial pair is the
@@ -94,6 +95,7 @@ and — for the `co-math` workflow — the agents into your agents directory:
 ```bash
 cp -R skills/* ~/.claude/skills/
 cp -R agents/* ~/.claude/agents/   # only needed for the co-math project workflow
+cp -R co-math ~/.claude/co-math    # strict-mode hooks + helper tools for co-math projects
 ```
 
 Then invoke them from Claude Code (`/math-proof`, `/co-math-init`, …) or let the model
@@ -145,9 +147,15 @@ as a compact reference, or copy prompts directly from
   project (`code/utils/codex_math/`) and call `codex exec`; you'll need the Codex CLI
   installed and authenticated. The skill is the playbook for using it well.
 - **`co-math-init`** writes per-project hooks that reference
-  `~/.claude/co-math/hooks/` (a `paper_tex_guard.py` and a
-  `workstream_complete_guard.py` that enforce strict mode). Provide your own, or run
-  with the guards disabled — the skill works either way; the hooks are the teeth.
+  `~/.claude/co-math/hooks/` (a `paper_tex_guard.py`, a
+  `workstream_complete_guard.py`, and a `blocked_workstreams_notice.py` that enforce
+  strict mode). These now ship in [`co-math/`](co-math/) — copy it to
+  `~/.claude/co-math` as shown above. Running with the guards disabled also works;
+  the hooks are the teeth.
+- **`second-brain`** carries its own Python package in
+  `skills/second-brain/package/` and installs it into a per-library virtualenv on
+  first use (`python3 -m venv` + `pip install`); it needs Python 3.11+ and, for
+  PDF ingestion, the optional `marker` OCR dependency.
 - **`lean-prover`** needs a working Lean 4 toolchain (`lean` and `lake` on `PATH`);
   it pins the toolchain per workstream and builds against mathlib. Without it the
   agent blocks the workstream cleanly rather than faking a proof. Every other agent

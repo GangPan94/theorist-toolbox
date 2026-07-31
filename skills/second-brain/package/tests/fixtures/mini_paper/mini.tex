@@ -1,0 +1,89 @@
+\documentclass{article}
+% A tiny fixture paper for the second-brain test suite.
+\usepackage{amsmath,amsthm}
+
+\input{notation}
+
+\newcommand{\val}{v_i(t_i)}
+\newcommand{\typespace}[1]{T_{#1}}
+\providecommand{\eps}{\varepsilon}
+\DeclareMathOperator*{\argmax}{arg\,max}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}{Definition}
+\newtheorem{assumption}{Assumption}
+
+\title{Allocation with Monotone Valuations: A Toy Study\thanks{Fixture only.}}
+\author{A. Author \and B. Author}
+\date{January 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We study a toy allocation problem with monotone valuations $\val$ and show
+that the direct mechanism $\mech$ is optimal. % trailing comment to strip
+\end{abstract}
+
+\section{Introduction}
+Allocation problems with private types are classical. Our contribution is a
+self-contained fixture: every result below is intentionally trivial, but the
+notation ($\val$, $\mech$, $\typespace{i}$) exercises macro handling, and the
+cross-references exercise dependency mapping. 50\% of this sentence tests
+escaped percent signs.
+
+\section{Model}
+
+\begin{definition}[Mechanism]\label{def:mechanism}
+A \emph{mechanism} $\mech = (x, p)$ consists of an allocation rule
+$x : \typespace{1} \times \dots \times \typespace{n} \to [0,1]^n$ and a
+payment rule $p : \typespace{1} \times \dots \times \typespace{n} \to \mathbb{R}^n$.
+\end{definition}
+
+\begin{definition}[Valuation]\label{def:valuation}
+Agent $i$'s \emph{valuation} for the good is $\val$, a function of her type
+$t_i \in \typespace{i}$.
+\end{definition}
+
+\begin{assumption}[Monotonicity]\label{ass:mono}
+For every agent $i$, the valuation $\val$ is nondecreasing in $t_i$.
+\end{assumption}
+
+\section{Main Results}
+
+\begin{theorem}[Optimality of the direct mechanism]\label{thm:main}
+Under Assumption~\ref{ass:mono}, the direct mechanism $\mech^{*}$ with
+$x^{*}(t) \in \argmax_{x} \sum_i \val$ maximizes welfare among all mechanisms
+of Definition~\ref{def:mechanism}.
+\end{theorem}
+
+\begin{proof}
+Fix a type profile $t$. By Definition 2, each $\val$ depends only on $t_i$, so
+welfare is separable. By Assumption 1, pointwise maximization is monotone in
+each coordinate, hence $x^{*}$ is well defined and feasible, and no mechanism
+of Definition~\ref{def:mechanism} achieves higher welfare. Take $\eps \to 0$.
+\end{proof}
+
+\begin{lemma}[Payment normalization]\label{lem:aux}
+Under Assumption~\ref{ass:mono}, payments can be normalized so that
+$p_i(0, t_{-i}) = 0$ for all $i$ without changing the allocation of
+Theorem~\ref{thm:main}.
+\end{lemma}
+
+\begin{proof}[Proof of Lemma~\ref{lem:aux}]
+Subtract $p_i(0, t_{-i})$ from agent $i$'s payment; the allocation rule of
+Theorem 1 is unchanged.
+\end{proof}
+
+\section{Conclusion}
+A fixture is not a contribution.
+
+\begin{thebibliography}{9}
+\bibitem{myerson1981} R. Myerson. Optimal auction design. \emph{Mathematics of
+Operations Research}, 6(1):58--73, 1981.
+\bibitem{nisan2006} N. Nisan and I. Segal. The communication requirements of
+efficient allocations. \emph{Journal of Economic Theory}, 129(1):192--224, 2006.
+\end{thebibliography}
+
+\end{document}

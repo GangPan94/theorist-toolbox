@@ -1,0 +1,28 @@
+# Academic second brain configuration.
+
+[provider]
+name = "claude-code"           # default: Claude via your subscription (no API key)
+model = ""                     # empty = provider default
+# name = "anthropic"; model = "claude-opus-4-8"   # Claude via metered API key
+# name = "openai";    model = "gpt-5.1"           # OpenAI GPT / Codex-family models
+# name = "compat";    model = "llama3.3:70b"; base_url = "http://localhost:11434/v1"
+base_url = ""
+
+[provider.api_keys]            # env-var NAMES, never the keys themselves
+anthropic = "ANTHROPIC_API_KEY"   # not needed for name = "claude-code"
+openai = "OPENAI_API_KEY"
+compat = "COMPAT_API_KEY"
+
+[agent]
+max_turns = 25
+max_tool_result_chars = 30000
+
+[search]
+top_k = 5
+use_dense = false              # requires the [dense] extra (sentence-transformers)
+
+[paths]
+papers = "papers"
+parsed = "parsed_papers"
+index = "index"
+scratchpad = "scratchpad"

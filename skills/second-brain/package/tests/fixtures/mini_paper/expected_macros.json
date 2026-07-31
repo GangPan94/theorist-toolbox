@@ -1,0 +1,10 @@
+{
+  "names": ["mech", "val", "typespace", "eps", "argmax"],
+  "definitions": [
+    "\\newcommand{\\mech}{\\mathcal{M}}",
+    "\\newcommand{\\val}{v_i(t_i)}",
+    "\\newcommand{\\typespace}[1]{T_{#1}}",
+    "\\providecommand{\\eps}{\\varepsilon}",
+    "\\DeclareMathOperator*{\\argmax}{arg\\,max}"
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "sections": ["abstract", "introduction", "model", "main_results", "conclusion", "references"],
+  "envs": {
+    "definition_1": {
+      "type": "definition",
+      "title": "Definition 1 (Mechanism)",
+      "label": "def:mechanism",
+      "dependencies": []
+    },
+    "definition_2": {
+      "type": "definition",
+      "title": "Definition 2 (Valuation)",
+      "label": "def:valuation",
+      "dependencies": []
+    },
+    "assumption_1": {
+      "type": "assumption",
+      "title": "Assumption 1 (Monotonicity)",
+      "label": "ass:mono",
+      "dependencies": []
+    },
+    "theorem_1": {
+      "type": "theorem",
+      "title": "Theorem 1 (Optimality of the direct mechanism)",
+      "label": "thm:main",
+      "dependencies": ["assumption_1", "definition_1"]
+    },
+    "proof_of_theorem_1": {
+      "type": "proof",
+      "title": "Proof of Theorem 1",
+      "label": null,
+      "dependencies": ["theorem_1", "definition_2", "assumption_1", "definition_1"]
+    },
+    "lemma_2": {
+      "type": "lemma",
+      "title": "Lemma 2 (Payment normalization)",
+      "label": "lem:aux",
+      "dependencies": ["assumption_1", "theorem_1"]
+    },
+    "proof_of_lemma_2": {
+      "type": "proof",
+      "title": "Proof of Lemma 2",
+      "label": null,
+      "dependencies": ["lemma_2", "theorem_1"]
+    }
+  }
+}
