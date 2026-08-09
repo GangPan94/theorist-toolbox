@@ -89,8 +89,20 @@ in the accompanying Substack post.
 
 ### Claude Code version
 
-These are Claude Code skills and agents. Drop the skills into your skills directory,
-and — for the `co-math` workflow — the agents into your agents directory:
+These are Claude Code skills and agents. The easiest path is the installer:
+
+```bash
+./install.sh          # the six skills -> ~/.claude/skills/
+./install.sh --all    # + co-math agents and strict-mode hooks (needed for the co-math workflow)
+```
+
+It backs up anything it would overwrite to a timestamped folder under
+`~/.claude/backups/` and verifies each skill's frontmatter afterwards.
+`--dry-run` previews without writing; `--dest DIR` installs somewhere other
+than `~/.claude`; `--with-agents` / `--with-co-math` pick pieces individually.
+
+Or copy by hand — the skills into your skills directory, and, for the
+`co-math` workflow, the agents and hooks alongside:
 
 ```bash
 cp -R skills/* ~/.claude/skills/
